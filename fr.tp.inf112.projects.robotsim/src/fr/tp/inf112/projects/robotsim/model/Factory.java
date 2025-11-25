@@ -24,7 +24,6 @@ public class Factory extends Component implements Canvas, Observable {
 
 	@JsonManagedReference
     private final List<Component> components;
-//	Kafka
     @JsonIgnore
 	private transient List<Observer> observers;
     
@@ -56,24 +55,16 @@ public class Factory extends Component implements Canvas, Observable {
 		super(null, new RectangularShape(0, 0, width, height), name);
 		
 		components = new ArrayList<>();
-		// Kafka
 		observers = null;
 		simulationStarted = false;
-		// Kafka
-//		this.notifier = new LocalFactoryModelChangedNotifier();
 	}
 	
 	public Factory() {
 		super(null, null, null);
 		components = new ArrayList<>();
-		// Kafka
 		observers = null;
 		simulationStarted = false;
-		// Kafka
-//		this.notifier = new LocalFactoryModelChangedNotifier();
 	}
-	
-	// Kafka
 	
 	public List<Observer> getObservers() {
 		if (observers == null) {
@@ -85,42 +76,30 @@ public class Factory extends Component implements Canvas, Observable {
 
 	@Override
 	public boolean addObserver(Observer observer) {
-		return getObservers().add(observer);
+	    if (notifier != null) {
+	        return notifier.addObserver(observer);
+	    }
+	    return getObservers().add(observer);
 	}
 
 	@Override
 	public boolean removeObserver(Observer observer) {
-		return getObservers().remove(observer);
+	    if (notifier != null) {
+	        return notifier.removeObserver(observer);
+	    }
+	    return getObservers().remove(observer);
 	}
-	
+
 	public void notifyObservers() {
-		for (final Observer observer : getObservers()) {
-			observer.modelChanged();
-		}
+	    if (notifier != null) {
+	        notifier.notifyObservers();
+	    } else {
+	        for (final Observer observer : getObservers()) {
+	            observer.modelChanged();
+	        }
+	    }
 	}
-	
-//	@Override
-//	public boolean addObserver(Observer observer) {
-//	    if (notifier != null) {
-//	        return notifier.addObserver(observer);
-//	    }
-//	    return false;
-//	}
-//
-//	@Override
-//	public boolean removeObserver(Observer observer) {
-//	    if (notifier != null) {
-//	        return notifier.removeObserver(observer);
-//	    }
-//	    return false;
-//	}
-//
-//	public void notifyObservers() {
-//	    if (notifier != null) {
-//	        notifier.notifyObservers();
-//	    }
-//	}
-	// Kafka end
+
 	public boolean addComponent(final Component component) {
 		if (components.add(component)) {
 			notifyObservers();
