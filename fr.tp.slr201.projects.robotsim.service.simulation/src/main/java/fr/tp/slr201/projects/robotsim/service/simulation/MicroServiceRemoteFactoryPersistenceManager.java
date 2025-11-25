@@ -7,12 +7,12 @@ import java.net.Socket;
 
 import fr.tp.inf112.projects.robotsim.model.Factory;
 
-public class RemoteFactoryPersistenceManagerNoCanvas {
+public class MicroServiceRemoteFactoryPersistenceManager {
 
     private final String host;
     private final int port;
 
-    public RemoteFactoryPersistenceManagerNoCanvas(String host, int port) {
+    public MicroServiceRemoteFactoryPersistenceManager(String host, int port) {
         this.host = host;
         this.port = port;
     }
@@ -28,7 +28,6 @@ public class RemoteFactoryPersistenceManagerNoCanvas {
             oos.flush();
             ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
 
-            // 请求：发送字符串 id
             oos.writeObject(toSend);
             oos.flush();
 

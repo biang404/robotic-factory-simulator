@@ -282,4 +282,6 @@ public class Factory extends Component implements Canvas, Observable {
 	public FactoryModelChangedNotifier getNotifier() {
 	    return notifier;
 	}
+	
+	
 }

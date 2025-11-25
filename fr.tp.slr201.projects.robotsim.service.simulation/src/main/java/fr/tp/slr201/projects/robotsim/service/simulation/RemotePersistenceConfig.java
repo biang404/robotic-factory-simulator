@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 public class RemotePersistenceConfig {
 
     @Bean
-    public RemoteFactoryPersistenceManagerNoCanvas remotePM(
+    public MicroServiceRemoteFactoryPersistenceManager remotePM(
             @Value("${sim.remote.host}") String host,
             @Value("${sim.remote.port}") int port) {
-        return new RemoteFactoryPersistenceManagerNoCanvas(host, port);
+        return new MicroServiceRemoteFactoryPersistenceManager(host, port);
     }
 }

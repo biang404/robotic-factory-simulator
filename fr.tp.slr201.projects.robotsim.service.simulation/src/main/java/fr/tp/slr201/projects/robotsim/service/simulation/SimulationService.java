@@ -13,10 +13,10 @@ import fr.tp.inf112.projects.robotsim.model.Factory;
 public class SimulationService {
     private static final Logger log = LoggerFactory.getLogger(SimulationService.class);
 
-    private final RemoteFactoryPersistenceManagerNoCanvas remotePM;
+    private final MicroServiceRemoteFactoryPersistenceManager remotePM;
     private final Map<String, Factory> running = new ConcurrentHashMap<>();
 
-    public SimulationService(RemoteFactoryPersistenceManagerNoCanvas remotePM) {
+    public SimulationService(MicroServiceRemoteFactoryPersistenceManager remotePM) {
         this.remotePM = remotePM;
     }
 

@@ -164,4 +164,10 @@ public class RemoteSimulatorController extends SimulatorController {
             this.localFactory = null;
         }
     }
+    
+    @Override
+    public boolean isAnimationRunning() {
+        return polling;
+    }
+
 }
