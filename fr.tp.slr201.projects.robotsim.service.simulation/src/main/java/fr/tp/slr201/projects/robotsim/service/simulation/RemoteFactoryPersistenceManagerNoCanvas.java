@@ -17,7 +17,6 @@ public class RemoteFactoryPersistenceManagerNoCanvas {
         this.port = port;
     }
 
-    /** 只做读取：向 RemoteServer 发送 String id，读取返回对象 */
     public Factory readFactory(String canvasId) throws IOException, ClassNotFoundException {
         if (canvasId == null || canvasId.isBlank()) {
             throw new IllegalArgumentException("canvasId must not be null/blank");
@@ -46,7 +45,6 @@ public class RemoteFactoryPersistenceManagerNoCanvas {
         }
     }
 
-    /** 与你之前的逻辑一致：没有路径就补上 data/ 前缀 */
     private static String ensureServerDataPath(String id) {
         String t = id.trim().replace('\\','/');
         if (t.isEmpty()) return t;

@@ -102,7 +102,7 @@ public class SimulatorApplication {
 	    if (choice == 1) {
 	        return StartMode.REMOTE;
 	    }
-	    // 默认走 LOCAL，避免点掉对话框时报错
+
 	    return StartMode.LOCAL;
 	}
 

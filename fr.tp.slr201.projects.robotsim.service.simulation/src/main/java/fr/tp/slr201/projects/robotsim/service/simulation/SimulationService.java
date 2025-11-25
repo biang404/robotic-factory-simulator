@@ -20,7 +20,6 @@ public class SimulationService {
         this.remotePM = remotePM;
     }
 
-    /** 启动仿真 */
     public boolean start(String id) throws Exception {
         if (id == null || id.isBlank()) throw new IllegalArgumentException("id must not be blank");
         if (running.containsKey(id)) {
@@ -43,7 +42,6 @@ public class SimulationService {
         return true;
     }
 
-    /** 读取当前仿真模型 */
     public Factory get(String id) {
         Factory f = running.get(id);
         if (f == null) {
@@ -54,7 +52,6 @@ public class SimulationService {
         return f;
     }
 
-    /** 停止仿真 */
     public boolean stop(String id) {
         Factory f = running.remove(id);
         if (f == null) {

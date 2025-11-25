@@ -52,33 +52,33 @@ public class Clientsocket {
                 break;
             }
             case "persist": {
-                if (args.length < 2) { System.out.println("persist 需要 <id>"); return; }
+                if (args.length < 2) { System.out.println("persist needs <id>"); return; }
                 String id = args[1];
                 Factory f = makeFactoryWithId(id);               
                 Object resp = roundtrip(host, port, f);        
-                System.out.println("PERSIST 响应: " + resp + "（期望 true）");
-                System.out.println("到模块根目录的 data\\ 查看是否生成: " + id);
+                System.out.println("PERSIST returns: " + resp + "（expectation true）");
+                System.out.println("go to the root to check data\\ is valid or not: " + id);
                 break;
             }
             case "read": {
-                if (args.length < 2) { System.out.println("read 需要 <id>"); return; }
+                if (args.length < 2) { System.out.println("read needs <id>"); return; }
                 String id = args[1];
                 Object resp = roundtrip(host, port, id); 
                 if (resp instanceof Canvas) {
-                    System.out.println("READ 成功，得到 Canvas: " + resp.getClass().getName());
+                    System.out.println("READ succeed，have got Canvas: " + resp.getClass().getName());
                     try {
                         var getId = resp.getClass().getMethod("getId");
                         System.out.println("Canvas.id = " + getId.invoke(resp));
                     } catch (NoSuchMethodException ignore) {}
                 } else if (resp instanceof IOException) {
-                    System.out.println("READ 失败: " + ((IOException) resp).getMessage());
+                    System.out.println("READ failed: " + ((IOException) resp).getMessage());
                 } else {
-                    System.out.println("意外响应类型: " + resp);
+                    System.out.println("Other errors: " + resp);
                 }
                 break;
             }
             default:
-                System.out.println("未知命令: " + args[0]);
+                System.out.println("Unknown command: " + args[0]);
         }
     }
 }
