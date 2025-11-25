@@ -27,8 +27,8 @@ To run the TP2 content (remote persistence manager):
 4. Now you can use **Open Canvas** and **Save Canvas** operations.
 
 > ⚠️ Note:  
-> - You must first save a model before you can see it in the list of available models.  
-> - You do **not** need to add a file extension when saving.
+> - I have already prepared two models so you don't have to save one. 
+> - If you want to save a model, do **not** to add a file extension when saving.
 
 ---
 
@@ -50,8 +50,8 @@ Now you can:
 
 > ⚠️ Notes:  
 > - In this mode, *Robot1* may have a noticeable initial delay, but it will eventually start moving.  
-> - To switch canvases, you must re-run `SimulatorApplication.java`, since a new controller instance cannot be recreated automatically.  
-> - The default factory model (created at startup) has no `modelId`, so it cannot be used directly for microservice simulation — do **not** click *Start Simulation* immediately after launching the GUI.
+> - You may find that after clicking "starting simulation" and "stop simulation", when you try to restart it, the simualtion will go back to the initial state where the factory has just been loaded. There's no wrong because in tp3 when we try to start the simulation we're demanded to pass the model to the server again and run it from the very start. 
+> - The default factory model (created at startup) has no `modelId`, so it cannot be used directly for microservice simulation — do **not** click *Start Simulation* immediately after launching the GUI, otherwise it will fall back to local mode and you will have to rerun the SimulationApplication.java.
 
 ---
 
