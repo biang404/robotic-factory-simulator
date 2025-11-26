@@ -30,6 +30,7 @@ public class Factory extends Component implements Canvas, Observable {
 	private boolean simulationStarted;
 	@JsonIgnore
 	private final java.util.Map<Position, Component> reservations = new java.util.HashMap<>();
+	@JsonIgnore
 	private FactoryModelChangedNotifier notifier;
 
 	public synchronized boolean tryReserve(Position pos, Component who) {
@@ -257,7 +258,7 @@ public class Factory extends Component implements Canvas, Observable {
 	public void setNotifier(FactoryModelChangedNotifier notifier) {
 	    this.notifier = notifier;
 	}
-
+	@JsonIgnore
 	public FactoryModelChangedNotifier getNotifier() {
 	    return notifier;
 	}

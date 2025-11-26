@@ -61,6 +61,10 @@ public class RemoteSimulatorController extends SimulatorController {
     public void setModelId(String modelId) {
         this.modelId = modelId;
     }
+    
+    public ObjectMapper getObjectMapper() {
+        return mapper;
+    }
 
     @Override
     public void startAnimation() {
@@ -168,6 +172,17 @@ public class RemoteSimulatorController extends SimulatorController {
     @Override
     public boolean isAnimationRunning() {
         return polling;
+    }
+    
+    Factory getLocalFactory() {
+        return localFactory;
+    }
+    
+    public void updateFromRemoteFactory(Factory remoteFactory) {
+        Factory local = this.localFactory;
+        if (local != null && remoteFactory != null) {
+            syncFromRemote(local, remoteFactory);
+        }
     }
 
 }

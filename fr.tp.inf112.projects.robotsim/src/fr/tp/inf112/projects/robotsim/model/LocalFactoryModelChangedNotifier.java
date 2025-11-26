@@ -18,12 +18,19 @@ public class LocalFactoryModelChangedNotifier implements FactoryModelChangedNoti
     }
 
     @Override
-    public boolean addObserver(Observer observer) {System.out.println("[LocalNotifier] addObserver(): " + observer);
-        return observers.add(observer);
+    public boolean addObserver(Object observer) {if (observer instanceof Observer o) {
+        System.out.println("[LocalNotifier] addObserver(): " + o);
+        return observers.add(o);
+    }
+    return false;
     }
 
     @Override
-    public boolean removeObserver(Observer observer) {System.out.println("[LocalNotifier] removeObserver(): " + observer);
-        return observers.remove(observer);
+    public boolean removeObserver(Object observer) {
+        if (observer instanceof Observer o) {
+            System.out.println("[LocalNotifier] removeObserver(): " + o);
+            return observers.remove(o);
+        }
+        return false;
     }
 }

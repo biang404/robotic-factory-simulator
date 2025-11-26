@@ -6,7 +6,7 @@ public interface FactoryModelChangedNotifier {
 
     void notifyObservers();
 
-    boolean addObserver(Observer observer);
+    boolean addObserver(Object observer);
 
-    boolean removeObserver(Observer observer);
+    boolean removeObserver(Object observer);
 }
