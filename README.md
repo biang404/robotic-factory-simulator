@@ -10,7 +10,7 @@ To run the TP1 content (livelock solution):
 
 1. Run the class **`SimulatorApplication.java`** located in  
    `fr.tp.inf112.projects.robotsim.app` package.
-2. When the GUI opens, choose **Local mode**.
+2. When the GUI opens, choose **Local mode** and then choose **Classic Mode**.
 3. You can then start and stop the simulation using the buttons  
    **Start Simulation** and **Stop Simulation**.
 
@@ -23,7 +23,7 @@ To run the TP2 content (remote persistence manager):
 1. First, run **`RemoteServer.java`** in the  
    `fr.tp.inf112.projects.robotsim.remote` package to start the server.
 2. Then, run **`SimulatorApplication.java`** again (in the same package as TP1).
-3. In the GUI, choose **Local mode**.
+3. In the GUI, choose **Local mode** and then choose **Classic Mode**.
 4. Now you can use **Open Canvas** and **Save Canvas** operations.
 
 > ⚠️ Note:  
@@ -42,7 +42,7 @@ To run the TP3 content (microservice):
 3. Locate **`EntryApplication.java`**, right-click it, and select  
    **Run As → Spring Boot App**.
 4. Then run **`SimulatorApplication.java`** again.
-5. This time, choose **Remote mode** in the GUI.
+5. This time, choose **Remote mode** in the GUI, and then choose **Classic mode** for the notification.
 
 Now you can:
 - Use **Open Canvas** to load a previously saved model.
@@ -73,3 +73,32 @@ After starting the simulation, you can refresh the `/state` URL repeatedly to ob
 Under normal conditions, you should see the coordinates of **Robot1** and **Robot2** changing continuously — indicating that they are moving.
 
 ---
+
+## TP4 – Kafka Simulator
+
+For this TP, I have completed the separation between the **notifier** and the **factory**, as well as the part responsible for sending Kafka messages — meaning that when the project runs, it can successfully send JSON messages through Kafka.  
+I also implemented the Kafka **consumer** according to the documentation, but unfortunately, I encountered significant difficulties when trying to integrate the consumer into the main system logic, which prevented me from fully applying it in my project. I apologize for that.
+
+To **test the Kafka message sending**, please follow these steps:
+
+1. Start **Zookeeper** and **Kafka**.  
+2. Open a terminal, enter the Kafka container, and run the following command (adjust the topic name according to your project setup):
+
+   ```bash
+   kafka-console-consumer \
+     --bootstrap-server localhost:9092 \
+     --topic simulation-1.rfactory \
+     --from-beginning
+3. After you have started both the **RemoteServer** and the **Microservice**, launch **`SimulationApplication.java`**.
+
+4. In the GUI, select **Remote** and then **Notifier (Mode Kafka Local)**.
+
+5. Open a factory model using **Open Canvas**, and then click **Start Simulation**.
+
+You should now see continuously refreshed JSON messages appearing in your Kafka consumer terminal.
+
+Regarding the consumer part, please refer to
+**`fr.tp.inf112.projects.robotsim.app.FactorySimulationEventConsumer.java`**
+to review my implementation.
+
+I am sincerely sorry that I could not successfully integrate this consumer into the factory’s execution logic — the entire project turned out to be very large and complex, and I could not fully understand all of its parts.
